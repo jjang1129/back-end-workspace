@@ -374,9 +374,11 @@ WHERE salary BETWEEN 2000000 AND 5000000 AND hire_date >= '2001-01-01' AND bonus
 -- 6. 보너스 포함 연봉이 NULL이 아니고 이름에 '하'가 포함되어 있는 사원들의
 -- 사번,사원명,급여,보너스 포함(별칭부여) 연봉 조회 
 -- 보너스 포함 연봉 : (salary+salary*bonus)*12
-SELECT emp_id,emp_name,salary,(salary+salary*bonus)*12'연봉'
+-- 연봉이 높은순으로 정렬
+SELECT emp_id,emp_name,salary,(salary+salary*bonus)*12 '연봉'
 FROM employee
-WHERE (salary+salary*bonus)*12 IS NOT NULL 
+WHERE (salary+salary*bonus)*12 IS NOT NULL AND emp_name LIKE '%하%'
+ORDER BY 4 DESC;
 
 
 
