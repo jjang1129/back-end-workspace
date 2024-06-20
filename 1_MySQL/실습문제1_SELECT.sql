@@ -25,8 +25,9 @@ WHERE fid< 7 AND fid != 4 AND fid !=6;
 -- 4. film_list 테이블에서 가격(price)은 2 이상 4 이하이면서 category가 Documentary거나 Animation이고 
 -- 배우들(actors) 중 BOB가 포함되어 있는 영화 제목(title)만 조회 
 SELECT  *
-FROM film_list;
-WHERE else case price >= '2' and price =< '4'
+FROM film_list
+WHERE  (4 >= price AND 2 <=price) AND (category = 'Documentary' OR  category = 'Animation')  AND actors LIKE '%BOB%';
+
 
 
 -- 5. address 테이블에서 district가 비어있지 않고 앞에 숫자 제외 주소만 10개 조회

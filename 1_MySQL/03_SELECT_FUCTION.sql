@@ -52,13 +52,14 @@ SELECT LPAD( 'hello' ,10,'*'),RPAD( 'hello' ,10,'+');
     - 문자열의 앞/뒤양쪽에 있는 지정한 문자들을 제거한 나머지 문자열 반환 
 */
 SELECT TRIM('       K  H         ') , ' K h' ;  -- 기본적으로 양쪽에 있는 공백 제거
-SELECT TRIM(BOTH ''FROM'     K   H   ');
+SELECT trim(BOTH'?'FROM'         ???  K   H  ??? ') 'd', '            k        h       ';
 
 SELECT trim(LEADING 'Z' FROM 'ZZZKHZZZ');
 SELECT ltrim('       K  H         '); -- LTRIM : 앞쪽 공백만 제거
 
 SELECT trim(TRAILING 'Z' FROM 'ZZZKHZZZ'); -- ZZZKH
-SELECT rtrim('       K  H        '); -- RTRIM : 뒤쪽 공백만 제거
+SELECT Rtrim('                 K H                        '); -- RTRIM : 뒤쪽 공백만 제거
+SELECT trim('     ZZZKHZZZ    '); -- ZZZKH
 
 /*
   SUBSTR|SUBSTRING(컬럼|'문자열', 시작 위치 값 , 추출할 문자 개수)
@@ -390,8 +391,16 @@ SELECT count(bonus)
 FROM employee;
 
 
-       
-       
+-- 현재 사원들이 속해있는 부서 수 조회 
+SELECT count(distinct dept_code) -- 중복제거 distinct
+FROM employee;
+
+-- 퇴사한 직원의 수 조회 (ent_date 또는 ent_yn) 
+SELECT count(ent_date)
+FROM employee;
+
+SELECT *
+FROM city
 
 
 
