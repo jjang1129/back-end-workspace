@@ -228,8 +228,8 @@ LEFT JOIN employee m on (e.manager_id = m. emp_id);
  -- 사번,직원명, 직급명, 부서명,근무지역, 급여 조회 
  SELECT emp_id,emp_name,job_name,dept_title,salary,local_name
  FROM employee
- JOIN department ON (dept_code = dept_id) 
- JOIN job USING (job_code) 
+JOIN department ON (dept_code = dept_id) 
+JOIN job USING (job_code) 
  JOIN location ON (location_id = local_code)
  WHERE job_name = '대리'  AND local_name LIKE'%ASIA%';
  
@@ -244,7 +244,8 @@ LEFT JOIN employee m on (e.manager_id = m. emp_id);
  FROM employee
  JOIN department ON (dept_code = dept_id)
  JOIN job USING(job_code)
- WHERE substr(emp_no,'1','1') = 7 AND substr(emp_name,'1','1') = '전' ;
+ WHERE substr(emp_no,'1','1') = 7 AND substr(emp_name,'1','1') = '전'  AND substr(emp_no,8,1)=2;
+ -- WHERE emp_no LIKE '7_____-2%'
  
  
  
@@ -254,11 +255,10 @@ LEFT JOIN employee m on (e.manager_id = m. emp_id);
  
  -- 3. 보너스를 받은 직원들의 직원명, 보너스 , 연봉, 부서명, 근무지역 조회
  
-  SELECT emp_name,bonus,salary*12,dept_title,local_name
+SELECT emp_name,bonus,(salary+salary*bonus)*12,dept_title,local_name
  FROM employee
- JOIN department ON (dept_code = dept_id)
- JOIN job USING(job_code)
- JOIN location ON (location_id = local_code)
+left JOIN department ON (dept_code = dept_id)
+left JOIN location ON (location_id = local_code)
  WHERE bonus IS NOT NULL ;
  
  
@@ -271,7 +271,6 @@ LEFT JOIN employee m on (e.manager_id = m. emp_id);
 SELECT emp_name,dept_title,local_name,national_name
 FROM employee
  JOIN department ON (dept_code = dept_id)
- JOIN job USING(job_code)
  JOIN location ON (location_id = local_code)
  JOIN national USING (national_code)
  WHERE national_name='한국' or national_name = '일본';
@@ -283,11 +282,15 @@ FROM employee
 
 -- 5. 각 부서별 평균 급여를 조회하여 부서명, 평균 급여 조회
 
-SELECT dept_title,format(avg(salary),0)
+SELECT dept_title,format(IFNULL(avg(salary),0),0)
 FROM employee
-JOIN department ON (dept_code = dept_id)
+RIGHT JOIN department ON (dept_code = dept_id)
 GROUP BY dept_title;
- 
+
+
+
+
+
 
 
 -- 6. 각 부서별 총 급여의 합이 1000만원 이상인 부서명, 급여 합 조회 
@@ -347,9 +350,9 @@ JOIN location ON(location_id =local_code);
 
 SELECT emp_name,job_name,dept_code,dept_title
 FROM employee
-JOIN department ON (dept_code = dept_id)
-JOIN job USING (job_code)
-WHERE dept_title LIKE '%해외%';
+RIGHT JOIN department ON (dept_code = dept_id)
+LEFT JOIN job USING (job_code)
+WHERE dept_title LIKE '해외%';
 
 
 

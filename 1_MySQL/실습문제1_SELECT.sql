@@ -19,7 +19,7 @@ WHERE (category = 'Sci-Fi' or category = 'Family') AND rating = 'PG' AND title L
 -- 3. film_list 테이블에서 fid가 7 이하면서 4, 6은 아닌 fid, title 조회
 SELECT title,fid
 FROM film_list
-WHERE fid< 7 AND fid != 4 AND fid !=6;
+WHERE fid<= 7 AND fid != 4 AND fid !=6;
 
 
 -- 4. film_list 테이블에서 가격(price)은 2 이상 4 이하이면서 category가 Documentary거나 Animation이고 
@@ -31,12 +31,18 @@ WHERE  (4 >= price AND 2 <=price) AND (category = 'Documentary' OR  category = '
 
 
 -- 5. address 테이블에서 district가 비어있지 않고 앞에 숫자 제외 주소만 10개 조회
-SELECT substr(address,instr(address,' '),char_length(address)-instr(address,' ')+1)'address',district''
+SELECT substr(address,instr(address,' ')+1)'address',district''
 FROM address
-WHERE district!=''  AND address LIKE '% %' 
-ORDER BY 2 ASC
+WHERE district!=''  
+ORDER BY  2 ASC, 1 DESC
 LIMIT 10 ; 
 
+SELECT  substr(address,instr(address,' ') +1) address,district
+FROM address
+WHERE district != '';
+
+SELECT *
+FROM address;
 
 
 
