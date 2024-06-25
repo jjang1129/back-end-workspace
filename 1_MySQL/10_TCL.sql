@@ -66,6 +66,19 @@ WHERE emp_id IN(213,218);
 SELECT *
 FROM dept_copy;
 
+-- emp_id 200삭제
+
+DELETE FROM emp_salary
+WHERE emp_id='200';
+
+SELECT *
+FROM emp_salary;
+
+-- DDL 구문을 실행하는 순간 임시 저장된 변경사항들을 무조건 반영 ! 
+
+CREATE TABLE test(
+    tid INT
+);
 
 
 

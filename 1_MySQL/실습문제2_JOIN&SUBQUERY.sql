@@ -32,6 +32,7 @@ FROM film
 JOIN film_actor USING (film_id)
 JOIN actor USING (actor_id)
 WHERE first_name = 'JULIA' AND last_name = 'MCQUEEN'
+ORDER BY title
 LIMIT 10;
 
 
@@ -81,7 +82,22 @@ ORDER BY rental_date  DESC
 LIMIT 1;
 
 
+-- >>>>>>>>>> 
+SELECT title,description
+FROM rental
+JOIN inventory USING (inventory_id)
+JOIN film USING (film_id) 
+WHERE rental_date =(SELECT max(rental_date)
+					 FROM rental 
+					 JOIN customer USING (customer_id)
+					 WHERE email ='JOYCE.EDWARDS@sakilacustomer.org');
 
+
+
+SELECT max(rental_date)
+FROM rental 
+ JOIN customer USING (customer_id)
+ WHERE email ='JOYCE.EDWARDS@sakilacustomer.org';
 
 
 
