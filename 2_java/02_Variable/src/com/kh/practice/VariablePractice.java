@@ -9,14 +9,14 @@ public class VariablePractice {
 		VariablePractice practice = new VariablePractice();
 		practice.method1();
 		practice.method2();
-		Scanner sc = new Scanner(System.in);
+		
 		practice.method3();
 		practice.method4();
-		Scanner scs = new Scanner(System.in);
+		
 		practice.method5();
-		Scanner scss = new Scanner(System.in);
+		
 		practice.method6();
-		Scanner scss1 = new Scanner(System.in);
+		
 		practice.method7();
 		
 	}
@@ -49,7 +49,7 @@ public class VariablePractice {
 		int x = 5;
 		int y = 7;
 		int z = 9;
-		int c = 5;
+		int c = x;
 		
 		x=y;
 		y=z;
@@ -105,8 +105,8 @@ public class VariablePractice {
 	 double width =Double.parseDouble(sc.nextLine());
 		System.out.print("세로 : ");
 		 double height =Double.parseDouble(sc.nextLine());
-		 System.out.println("면적 : "+(width*height));
-		 System.out.println("둘레 : "+(width+height)*2);
+		 System.out.printf("면적 : %.2f\n",(width*height));
+		 System.out.printf("둘레 : %.2f\n",(width+height)*2);
 			
 			
 		
