@@ -51,6 +51,7 @@ public class OperatorPractice {
 		System.out.printf("세번째 숫자 ");
 		int number3 = sc.nextInt();
 		String check = ((number1 == number2) && (number1 == number3))? "true" : "false";
+		// boolean result = num1 == num2 && num1 ==num3 
 		System.out.println(check);
 		
 	}
