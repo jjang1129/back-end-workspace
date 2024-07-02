@@ -243,19 +243,20 @@ public class C_For {
       
       
       /*        i,j  0,0 0,1 0,2 1,4 제외  4는 n열에서 j-n번째까지 제외 한다 
-       *     *  0,4
-       *    ** 1,3 1,4 
-       *   *** 3,3 3,4 3,5
-       *  ****
-       * *****
+       *     *                 0,4
+       *    **             1,3 1,4 
+       *   ***         2,2 2,3 2,4
+       *  ****     3,1,3,2,3,3,3,4
+       * ***** 4,0 4,1 4,2 4,3 4,4 
        * 
        * 
        * */
       public void method13() {
     	  for(int i=0; i<5; i++) {
-    		  for(int j= 4; j>=0; j--) {
-    			  if( i < j) System.out.print(" ");
-    			  }  System.out.println('*');
+    		  for(int j= 0; j<5; j++) {
+    			  if( 4-i <= j ) { System.out.print("*");
+    			   } else {System.out.print(" ");}
+    			 }   System.out.println();
     		  } 
     	  }
     	

@@ -1,5 +1,6 @@
 package com.kh.practice;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class ConditionPractice {
@@ -15,7 +16,7 @@ public class ConditionPractice {
 //		a.method5();
 //		a.method6();
 //		a.method7();
-//		a.method8();
+//    	a.method8();
 //		a.method9();
 //		a.method10();
 		a.method11();
@@ -81,7 +82,11 @@ public class ConditionPractice {
         int pizza = sc.nextInt();
         System.out.print("피자 먹는 사람 수 : ");
         int people = sc.nextInt();
-        System.out.println(people/pizza+1);
+        if(people%pizza == 0) {
+        	System.out.println(people/pizza);
+        } else {
+        	System.out.println(people/pizza+1);
+        }
     }
 
     /*
@@ -108,7 +113,15 @@ public class ConditionPractice {
     	int score2 = Integer.parseInt(sc.nextLine());
     	System.out.print("영어점수 : ");
     	int score3 = Integer.parseInt(sc.nextLine());
+    	double avg =(double)(score1+score2+score3)/3;
     	if( (score1 >=40 && score2 >=40 && score3 >=40)&& (score1+score2+score3)/3 >=60  ) {
+    		System.out.println("국어 점수 : "+score1);
+    		System.out.println("수학 점수 : "+score2);
+    		System.out.println("영어 점수 : "+score3);
+    		System.out.println("합계 : "+(score1+score2+score3));
+    		System.out.printf("평균 : %.1f\n ",avg); 
+    		System.out.println("평균 : "+String.format("%.1f", avg)); // 소수점 자리 표현방식 prinf를 쓰거나 prtinln에서 string format 쓰거나
+    		
     		System.out.println("축하합니다, 합격입니다!");
     	} else {
     		System.out.println("불합격입니다");
@@ -122,18 +135,22 @@ public class ConditionPractice {
         
         구매한 옷 가격 : 580000 
         464000
-     */                              
+     */                   // 처음에는 if 문 마다 일일히 system.out.printl(가격)을 사용했는데 그냥 
+                          // if문 마다 price 값을 변화 시키고 마지막에 그 값만 출력하게끔 했다 
     public void method5() {
     	
     	System.out.print("구매한 옷 가격 : ");
     	int price = sc.nextInt();   
     	if ( price >= 500000) {
-    		System.out.println( price - (price*20/100));
+    		price = (int) (price*0.8);  	
     	} else if  ( price >= 300000) {
-    		System.out.println(price - (price*10/100));
+    		price = (int) (price*0.9);
     	} else if (price >=100000) {
-    		System.out.println(price - (price*5/100));
-    	} else System.out.println(price);
+    		price = (int) (price*0.95);
+    	}  
+    	DecimalFormat df = new DecimalFormat("###,###"); // 가격에 콤마 넣는법! 
+    	
+    	System.out.println(df.format(price)); 
     		
     	
     	
@@ -206,7 +223,24 @@ public class ConditionPractice {
     		System.out.println("아이디가 틀렸습니다");
     	} else System.out.println("로그인 실패");
     	
+    //  선생님 풀이 	
+    	System.out.println("아이디 : ");
+    	String id1 = sc.nextLine();
+    	System.out.println("비밀번호 : ");
+    	String pass1 = sc.nextLine();
     	
+    	String id1Check = "happy";
+    	String pass1Check = "1234";
+    	
+    	if(id1.equals(id1Check) && pass1.equals(pass1Check)) {
+    		System.out.println("로그인 성공!");
+    	} else if (!id1.equals(id1Check) && !pass1.equals(pass1Check)) {
+    		System.out.println("로그인 실패");
+    	} else if (!id1.equals(id1Check)) {
+    		System.out.println("아이디가 틀렸습니다. ");
+    	} else {
+    		System.out.println("비밀번호가 틀렸습니다. ");
+    	}
     	
     }
 
@@ -223,14 +257,7 @@ public class ConditionPractice {
         저체중
 
      */
-       
-    
-    
-    
-    
-    
-    
-    
+     
     public void method8() {
 
     	System.out.print("키(cm)를 입력해주세요");
@@ -271,10 +298,21 @@ public class ConditionPractice {
     
     	System.out.print("숫자 입력 : ");
     	int num =Integer.parseInt(sc.nextLine());
+    
+    
     	System.out.print("숫자 입력 : ");
     	int num2 =Integer.parseInt(sc.nextLine());
+    	if(num <= 0 || num2 <=0) {
+    		System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
+    		return;
+    	}
+    	
+    	
     	System.out.println("연산자 입력(+,-,*,/,%)");
     	String num3 =sc.nextLine();
+    	
+    	
+    	
     	switch (num3) {
     	case "+" :
     		System.out.println(num +"+"+num2+"="+(num+num2));
@@ -294,6 +332,7 @@ public class ConditionPractice {
     	 default :
     		System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다." );
     	}
+    	
     }
 
     /*
@@ -332,7 +371,8 @@ public class ConditionPractice {
     	case 9 : 
     		System.out.println("프로그램을 종료합니다");
     		break;
-    	
+    	default :
+    	  System.out.println("잘못된 번호 입니다.");
     		
     	
     	
@@ -398,6 +438,10 @@ public class ConditionPractice {
     	int num3 = sc.nextInt();
     	System.out.print("출석  점수 : ");
     	int num4 = sc.nextInt();
+    	if ( num4 > 20) {
+    		System.out.println("출석 점수는 최대 20점 입니다");
+    		return;
+    	}
     	/* 중간 고사 점수(20) : 16.0
         기말 고사 점수(30) : 27.0
         과제 점수 (30) : 15.0
@@ -406,11 +450,11 @@ public class ConditionPractice {
         PASS
     	 * */
     	System.out.println("===========결과==========");
-    	double num11 = num1*20/100;
-    	double num22 = num2*30/100;
-    	double num33 =num3*30/100;
+    	double num11 = (double)num1*20/100;
+    	double num22 = (double)num2*30/100;
+    	double num33 =(double)num3*30/100;
     	
-    	double sum =num11+num22+num33+num4;
+    	double sum =num11+num22+num33+(double)num4;
     	System.out.println("중간 고사 점수(20) : "+num11);
     	System.out.println("기말 고사 점수(30) : "+num22);
     	System.out.println(" 과제 점수 (30) : "+num33);
