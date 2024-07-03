@@ -7,11 +7,11 @@ class LoopPractice {
 	public static void main(String[] args) {
 		LoopPractice a = new LoopPractice();
 	//	a.method1();
-		a.method2();
+	//	a.method2();
 	//	a.method3();
 	//	a.method4();
 	//	a.method5();
-	//	a.method6();
+		a.method6();
 	}
  
     /*
@@ -91,17 +91,17 @@ class LoopPractice {
     */
     public void method3() {
     	System.out.print("문자열 : ");
-    	String text =sc.nextLine();
-    	System.out.print("문자 : ");
+    	String text =sc.nextLine();  // aaaa
+    	System.out.print("문자 : ");   // a
     	char text1 = sc.nextLine().charAt(0);
     	
     	int count = 0;
-    	for(int i=0; i <(text.length())-1; i++) {
+    	for(int i=0; i <text.length(); i++) {
     		if(text1 == text.charAt(i) ) {
     			count++;   			
     		} 
     	} 
-    	System.out.println(text+ "안에 포함된"+ text1+" 개수 : "+(count+1) );
+    	System.out.println(text+ "안에 포함된"+ text1+" 개수 : "+(count) );
     	
 
     }
@@ -174,6 +174,7 @@ class LoopPractice {
         	  count6++;
           }
          }
+         
          
         
           System.out.println("1의 갯수 : "+ count1);

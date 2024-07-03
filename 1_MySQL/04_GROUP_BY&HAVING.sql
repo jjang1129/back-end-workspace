@@ -10,7 +10,8 @@ count(*)'사원수',
 format(sum(salary),0)'총 급여',
 format(avg(salary),0)'평균 급여',
 format(min(salary),0)'최저 급여',
-format(max(salary),0)'최고 급여'
+format(max(salary),0)'최고 급여',
+salary
 FROM employee
 GROUP BY dept_code; 
 

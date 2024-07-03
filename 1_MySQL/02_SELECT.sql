@@ -45,10 +45,16 @@
 SELECT *
 FROM employee;
 
+SELECT *
+FROM employee;
+
+
 -- employee 테이블의 전체 사원들의 사번(emp_id), 이름(emp_name),
 -- 급여(salary)만의 조회
+
 SELECT emp_id, emp_name, salary
 FROM employee;
+
 -- 관례상 대문자로 작성
 
 -- 실습 문제 --------
@@ -155,9 +161,10 @@ WHERE dept_code = 'D9';
 -- 실습문제 (테이블 : employee) --
 -- 1. 부서코드(dept_code)가 'D1'인 사원들의
 -- 사원명(emp_name), 급여(salray), 부서코드만 조회 
-SELECT emp_name, salary,dept_code
+SELECT emp_name,salary,dept_code
 FROM employee
-WHERE dept_code='D1';
+WHERE dept_code ='D1';
+
 
 -- 2. 부서코드가 'D1'이 아닌 사원들의 사번(emp_id),사원명(emp_name), 부서코드 조회
 SELECT emp_id,emp_name,dept_code
@@ -339,7 +346,7 @@ LIMIT 10, 5;
 --   급여가 200만원 이상인 사원들의 모든 칼럼 조회 
 SELECT *
 FROM employee
-WHERE salary >= 2000000;
+WHERE salary >= 2000000 AND (job_code = 'j7' OR job_code = 'j2');
 
 -- 2. 사수가 없고 부서배치도 받지 않은 사원들의 
 -- 사원명, 사수사번(manager_id) ,부서코드 조회 
