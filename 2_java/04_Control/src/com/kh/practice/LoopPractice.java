@@ -1,5 +1,6 @@
 package com.kh.practice;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 class LoopPractice {
@@ -11,7 +12,9 @@ class LoopPractice {
 	//	a.method3();
 	//	a.method4();
 	//	a.method5();
-		a.method6();
+	//	a.method55();
+	//	a.method6();
+		a.method66();
 	}
  
     /*
@@ -40,18 +43,9 @@ class LoopPractice {
     public void method2() {
     // 홀수면 더하고 짝수면 빼기 100이 될때까지 
     // 이때의 홀수값? 
-    	 int sum=0;
-    	for(int i = 1; i<200; i++) {
-    		if(i%2 ==1) {
-    			sum+=i;
-    		}else {
-    			sum-=i;
-    		}
-    	}  System.out.println(sum);
-    	
-    	
+    	 
         int sum1=0;
-    	int i=0;
+    	int i=1;
     	while (true) {
     		
     		if (i%2 == 1) {
@@ -59,10 +53,8 @@ class LoopPractice {
     		} else if(i%2 == 0) {
     			sum1-=i;
     		} 
-    		
-    		
-    		
-    		if(sum1 == 100) {
+    		    		
+    		if(sum1 >= 100) {
     			System.out.println(i);
     			break;
     		} 
@@ -71,15 +63,11 @@ class LoopPractice {
     		
     	
     	}
-    	
-    	
-    	
-    	
-    	
-    
-      
-  
+ 	
     }
+    
+    
+    
 
     /*
         사용자로부터 문자열을 입력 받고 문자열에서 검색될 문자를 입력 받아 해당 문자열에 그 문자가 몇 개 있는지 개수를 출력하세요. 
@@ -96,11 +84,18 @@ class LoopPractice {
     	char text1 = sc.nextLine().charAt(0);
     	
     	int count = 0;
-    	for(int i=0; i <text.length(); i++) {
+  /*  	for(int i=0; i <text.length(); i++) {
     		if(text1 == text.charAt(i) ) {
     			count++;   			
     		} 
-    	} 
+    	} */
+    	
+    	// 향상된 for문 
+    	for( char s : text.toCharArray()) {
+    		if ( text1 == s) count ++;
+    	}
+    	
+    	
     	System.out.println(text+ "안에 포함된"+ text1+" 개수 : "+(count) );
     	
 
@@ -123,7 +118,7 @@ class LoopPractice {
     	
     	while (true) { 	
     		double number =(int)(Math.random()*11);
-    		if(number == 7) {
+    		if(number == 0) {
     			System.out.println(number);
     			break;
     		} else {
@@ -183,16 +178,24 @@ class LoopPractice {
           System.out.println("4의 갯수 : "+ count4);
           System.out.println("5의 갯수 : "+ count5);
           System.out.println("6의 갯수 : "+ count6);
-         
-          
-        	  
-          
-          
-          
-        	 
-             	 
+                  	 
     }
 
+    
+    public void method55() {
+    	int [] dice = new int[6];
+    	
+    	for(int i=0 ; i< 10; i++) {
+    		int random=(int) (Math.random()*6) ;
+    		// -- > random : 0 --> dice[0]
+    		// -- > random : 1 -- > dice [1]
+    		dice [random]++;
+    	}
+    	for( int i=0; i < dice.length ; i++) {
+    		System.out.println((i+1)+"의 갯수 : "+ dice[i]);
+    	}
+    	
+    }
     /*
         사용자의 이름을 입력하고 컴퓨터와 가위바위보를 하세요. 
         컴퓨터가 가위인지 보인지 주먹인지는 랜덤한 수를 통해서 결정하도록 하고, 사용자에게는 직접 가위바위보를 받으세요.
@@ -276,6 +279,44 @@ class LoopPractice {
         } 
         
     };
+    public void method66() {
+    	
+    	String [] rps = { "가위","바위","보"};
+    	System.out.print("당신의 이름을 입력해주세요 : ");
+    	String name = sc.nextLine() ;
+    	int win = 0;
+    	int lose = 0;
+    	int draw= 0;
+    	
+    	while (true) {
+    		System.out.print("가위바위보 : ");
+    		String input = sc.nextLine();
+    		
+    		// 0- 가위 , 1- 바위 , 2- 보 
+    		int computer =(int) (Math.random()*3);
+    		System.out.println("컴퓨터 :" +rps[computer]);
+    		System.out.println(name + " : " + input);
+    		
+    		// 배열에서 값으로 인덱스 찾기 -> 사용자가 입력한 값을 숫자로 !
+    	int number=	Arrays.asList(rps).indexOf(input);
+    	   
+    		if(number == computer) {
+    			System.out.println("비겼습니다.");
+    			draw++;
+    		} else if ((number == 0 && computer ==2) || (number == 1 && computer == 0) || (number == 2 && computer == 1)) {
+    			System.out.println("이겼습니다! ");
+    			win++;
+    			break;
+    		} else {
+    			System.out.println("졌습니다 ㅠㅠ");
+    			lose++;
+    		}
+    		
+    	}
+    	
+    	System.out.println("비긴횟수 : " + draw+ " , 진 횟수 : "+ lose +" , 이긴횟수 : "+win);
+    	
+    }
     
      
         
