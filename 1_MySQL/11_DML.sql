@@ -42,6 +42,11 @@ VALUES ('이동엽','개발 지원팀',default);
 INSERT INTO emp
 VALUES ('개발 지원팀', 3,'이동엽',default);
 
+INSERT INTO emp 
+VALUES ('200', '김밥' , '개발홍보팀',default); 
+
+SELECT * 
+FROM emp;
 
 
 -- 2) 원하는 컬럼만 입력
@@ -54,6 +59,9 @@ VALUES ('윤유진');
 
 INSERT INTO emp(dept_title,emp_name)
 VALUES ('인사팀','유영민') ;
+
+INSERT INTO emp(emp_id,emp_name)
+VALUES (201,'김밥1');
 
 -- emp_name 칼럼에 not null 제약조건으로 인한 에러!
 INSERT INTO emp(dept_title)
@@ -137,6 +145,10 @@ SET salary = 3000000,
 
 UPDATE emp_salary 
 SET salary= salary*1.1;
+
+UPDATE emp_salary
+SET salary= salary*1.2
+WHERE salary > 500000;
 
 -- 사번이 201인 사원의 사원번호를 NULL로 변경 
 

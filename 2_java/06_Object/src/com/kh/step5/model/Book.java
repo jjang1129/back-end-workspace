@@ -20,13 +20,13 @@ public class Book {
 	
 	public Book() {}
 	
-
 	public Book(String title, int price, double discountRate, String author) {
 		this.title = title;
 		this.price = price;
 		this.discountRate = discountRate;
 		this.author = author;
 	}
+
 
    // getter , setter 각각 변수당 1개씩 
 	// setter : 변수를 넣을때 

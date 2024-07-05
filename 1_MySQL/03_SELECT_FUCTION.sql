@@ -40,6 +40,11 @@ SELECT email  ,instr(email,'@')
 FROM employee
 WHERE email LIKE '%s%';
 
+SELECT email, instr(email,'@')
+FROM employee	
+WHERE email LIKE '%s%';
+
+
 /*
    LPAD|RPAD(컬럼 |'문자열', 최종적으로 반환할 문자의 길이, '덧붙이고자 하는 문자')
    - 문자열에 덧붙이고자 하는 문자를 왼쪽 또는 오른쪽에 덧붙여서 
@@ -70,10 +75,9 @@ SELECT substr('PROGRAMMING',1,6); -- PROCRA
 SELECT substr('PROGRAMMING',-8,3); -- GRA
 
 -- 여자 사원들의 이름(emp_name), 주민등록번호(emp_no) 조회 
-SELECT emp_name, emp_no 
+SELECT emp_name, emp_no
 FROM employee
-WHERE substr(emp_no,8,1) = '2';
-
+WHERE substr( emp_no , '8','1')  IN (2,4);
 
 -- 남자 사원들의 이름(emp_name), 주민등록번호(emp_no) 조회 
 SELECT emp_name, emp_no 
@@ -230,7 +234,7 @@ SELECT year(now()),month(now()),day(now()),hour(now()),minute(now()),second(now(
 
 -- 연도별 오래된 순으로 직원명, 입사년도, 입사월, 입사일 조회 
 
-SELECT emp_name,year(hire_date),month(hire_date),day(hire_date)
+SELECT emp_name,year(hire_date),month(hire_date),day(hire_date), year(hire_date),timestampdiff()
 FROM employee
 ORDER BY 2 ASC;
 		
@@ -296,12 +300,9 @@ FROM employee;
 -- j6인 사람은 15프로 
 -- j5인 사람은 20프로 
 -- 그 외의 직급의 사원은 급여를 5프로만 인상
-SELECT emp_name,job_code,salary, 
-format(if (job_code = 'j7', salary*1.1, if(job_code = 'j6', salary*1.15, if(job_code = 'j5', salary*1.2, salary*1.05))),0)'인상된 급여'
-
+SELECT emp_name, dept_code, job_code,salary,if( job_code = 'j7',salary*10, if(job_code ='j6' ,salary*15, if(job_code = 'j5', salary*20,salary*5)))
 FROM employee
-ORDER  BY 2 ASC,4 DESC;
-
+ORDER BY 3 , 4 DESC;
 /*
   CASE WHEN 조건식 1 THEN 결과값 1 
        WHEN 조건식 2 THEN 결과값 2 
@@ -327,14 +328,11 @@ ORDER  BY 2 ASC,4 DESC;
 --  500이하~350초과 2
 -- 350이하~200초과 3
 -- 그외 4
-SELECT emp_name,salary,
-		case  when salary>5000000 then '1등급'
-              when salary>3500000 then '2등급'
-              when salary>2000000 then '3등급'
-              else '4등급'
-              end '급여등급'
-FROM employee
-ORDER BY 2 DESC;
+SELECT emp_name,salary, CASE WHEN salary > 5000000 then '1등급' 
+							 WHEN salary >3500000 then '2등급' 
+							 WHEN salary > 2000000 then '3등급' 
+							 ELSE '4등급' ;
+		FROM employee;
 
 -- 그룹함수(집계함수)--------------------------------------------
 /*

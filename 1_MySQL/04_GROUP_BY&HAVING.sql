@@ -42,8 +42,9 @@ GROUP BY if(substr(emp_no,'8','1')=1,'남자','여자');
 -- 부서별 평균 급여가 300만원 이상인 부서의 평균 급여 조회 
 SELECT dept_code,format(avg(salary),0)'평균 급여      '
 FROM employee
+
 GROUP BY dept_code 
-HAVING  avg(salary)>='3000000' ;
+HAVING  avg(salary)>='3000000'  ;
 
 
 
@@ -78,6 +79,10 @@ GROUP BY dept_code;
 SELECT dept_code,count(bonus) '사원들 수'
 FROM employee
 GROUP BY dept_code;
+
+
+SELECT iFNULL(bonus,'no')
+FROM employee;
 
 
 /*

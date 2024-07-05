@@ -86,13 +86,9 @@ WHERE job_name = '대리';
 -- 실습 문제 ---
 
 -- 1. 부서가 인사관리부인 사원들의 사번, 이름 보너스 조회 ( employee, department)
-SELECT emp_id,dept_title,emp_name,bonus
-FROM employee 
-JOIN department ON (employee.dept_code = department.dept_id)
-WHERE dept_title ='인사관리부' ;
 
-
-
+SELECT  *
+FROM employee;
 
 
 
@@ -226,14 +222,13 @@ LEFT JOIN employee m on (e.manager_id = m. emp_id);
  -- 실습 문제 ---
  -- 1. 직급이 대리면서 ASIA 지역에서 근무하는 직원들의
  -- 사번,직원명, 직급명, 부서명,근무지역, 급여 조회 
- SELECT emp_id,emp_name,job_name,dept_title,salary,local_name
- FROM employee
-JOIN department ON (dept_code = dept_id) 
-JOIN job USING (job_code) 
- JOIN location ON (location_id = local_code)
- WHERE job_name = '대리'  AND local_name LIKE'%ASIA%';
- 
- 
+SELECT emp_no,emp_name,job_name,dept_title,local_name,salary
+FROM employee
+JOIN department ON (dept_code = dept_id)
+JOIN job USING (job_code)
+JOIN  location ON ( location_id = local_code)
+WHERE (job_name = '대리')  AND local_name LIKE '%ASIA%';
+
  
  
  
