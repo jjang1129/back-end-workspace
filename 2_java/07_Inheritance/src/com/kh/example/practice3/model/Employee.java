@@ -1,11 +1,13 @@
 package com.kh.example.practice3.model;
 
+import com.kh.overriding.model.Customer;
+
 public class Employee {
 
 	private int empNo;
 	private String name;
 	private char gender;
-	private String phon;
+	private String phone;
 	private String dept;
 	private int salary;
 	private double bonus;
@@ -17,12 +19,12 @@ public class Employee {
 	}
 
 
-	public Employee(int empNo, String name, char gender, String phon, String dept, int salary, double bonus) {
+	public Employee(int empNo, String name, char gender, String phone, String dept, int salary, double bonus) {
 		
 		this.empNo = empNo;
 		this.name = name;
 		this.gender = gender;
-		this.phon = phon;
+		this.phone = phone;
 		this.dept = dept;
 		this.salary = salary;
 		this.bonus = bonus;
@@ -59,13 +61,13 @@ public class Employee {
 	}
 
 
-	public String getPhon() {
-		return phon;
+	public String getPhone() {
+		return phone;
 	}
 
 
-	public void setPhon(String phon) {
-		this.phon = phon;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 
@@ -101,11 +103,9 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [empNo=" + empNo + ", name=" + name + ", gender=" + gender + ", phon=" + phon + ", dept="
+		return "Employee [empNo=" + empNo + ", name=" + name + ", gender=" + gender + ", phone=" + phone + ", dept="
 				+ dept + ", salary=" + salary + ", bonus=" + bonus + "]";
 	}
-	
-	
 	
 	
 	
