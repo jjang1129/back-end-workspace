@@ -2,12 +2,12 @@ package com.kh.array.practice3.model;
 
 public class Book {
 	
-	String title;
-	boolean coupon;
-	int accessAge;
-	public Book() {
+private	String title;
+private	boolean coupon;
+private	int accessAge;
+public Book() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Book(String title, boolean coupon, int accessAge) {
 		super();
