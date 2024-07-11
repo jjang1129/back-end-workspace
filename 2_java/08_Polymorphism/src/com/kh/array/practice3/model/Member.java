@@ -1,8 +1,6 @@
-package com.kh.array.practice3.member;
+package com.kh.array.practice3.model;
 
 import java.util.Arrays;
-
-import com.kh.array.practice3.model.Book;
 
 public class Member extends Book {
 	private   String name;

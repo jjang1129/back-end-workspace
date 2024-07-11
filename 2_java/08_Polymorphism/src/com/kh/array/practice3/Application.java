@@ -2,10 +2,8 @@ package com.kh.array.practice3;
 
 import java.util.Scanner;
 
-import com.kh.array.practice1.model.Student;
-import com.kh.array.practice3.member.Member;
-import com.kh.array.practice3.member.controller.MemberController;
 import com.kh.array.practice3.model.Book;
+import com.kh.array.practice3.model.Member;
 
 public class Application {
 	
@@ -85,7 +83,8 @@ public class Application {
 		Book[] bookList = md.getBookList();
 		
 		if (count < 2) {
-			bookList[count] = book[number - 1];			
+			bookList[count] = book[number - 1];	
+			
 			count++;
 			if(bookList[0] == book[0] || bookList[1]==book[0]) {
 				md.setCoupon(1);

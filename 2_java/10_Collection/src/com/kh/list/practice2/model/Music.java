@@ -1,5 +1,7 @@
 package com.kh.list.practice2.model;
 
+import java.util.Comparator;
+
 import com.kh.list.model.Person;
 
 public class Music implements Comparable<Music> {
@@ -33,14 +35,8 @@ public class Music implements Comparable<Music> {
 		return name+"-"+title  ;
 	}
 	
-	@Override
-	public int compareTo(Music o) {
-		
 	
-		
-		
-		return this.name.compareTo(o.name);   
-	}
+	
 	
 	@Override
 	public int compareTo(Music o) {
@@ -48,8 +44,11 @@ public class Music implements Comparable<Music> {
 	 
 		
 		
-		return this.title.compareTo(o.title);   
+		return this.name.compareTo(o.name);   
 	}
+	
+	
+	
 	
 	
 	

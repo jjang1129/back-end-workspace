@@ -2,7 +2,7 @@ package com.kh.array.practice3.member.controller;
 
 import java.util.Arrays;
 
-import com.kh.array.practice3.member.Member;
+import com.kh.array.practice3.model.Member;
 
 public class MemberController {
 	

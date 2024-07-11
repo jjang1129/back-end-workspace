@@ -22,7 +22,7 @@ public class SnackController {
 	};
 	
 	public String confirmData() {
-		System.out.println(s.toString());
+		
 	return s.getKind()+"("+s.getName()+"-"+s.getFlavor()+")"+s.getNumOf()+"개"+s.getPrice()+"원";	
 		
 	};
