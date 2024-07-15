@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import com.kh.list.practice2.controller.MusicController;
 import com.kh.list.practice2.model.Music;
 import com.kh.list.practice2.model.TitleSort;
 
@@ -16,6 +17,8 @@ public class Application {
 	ArrayList<Music> list = new ArrayList<Music>();
 	ArrayList<Music> list2 = new ArrayList<Music>();
 	ArrayList<Music> list3 = new ArrayList<Music>();
+	
+	MusicController mc = new MusicController();
 
 	 Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
@@ -48,17 +51,18 @@ public class Application {
 			  break;
 			  case 2 :firstMusic();
 			  break;
-			  case 3 : allMusic();  
+			  case 3 : allMusic(); 
 			  break;
 			  case 4 : searchMusic();
+				 
 			  break;
-			  case 5 :  deleteMusic();
+			  case 5 : deleteMusic();
 			  break;
 			  case 6 : updateMusic();
 			  break;
 			  case 7 : nameDown();
 			  break;
-			  case 8 : titleUp();
+			  case 8 : mc.titleUp();
 			  break;
 			  case 9 : check =false;
 			  System.out.println("프로그램을 종료합니다");
@@ -87,6 +91,7 @@ public class Application {
 		 list.add(0,new Music(title,name));
 		 list2.add(0,new Music(title,name));
 		 list3.add(0,new Music(title,name));
+		
 		 System.out.println("추가 성공 !");
 	}
 	
@@ -101,11 +106,13 @@ public class Application {
 		 list2.add(list2.size(),new Music(title,name));
 		 list3.add(list3.size(),new Music(title,name));
 		 System.out.println("추가 성공 !");
+		
 	}
 	public void searchMusic() {
 		System.out.println("****특정 곡 검색****");
 		System.out.print("검색할 곡 명 : ");
-		String title = sc.nextLine();
+	String title = sc.nextLine();
+		
 		for(int i =0; i<list.size(); i++) {
 			if(list.get(i).getTitle().contains(title)) {
 				System.out.println(list.get(i)+"을 검색 했습니다.");
@@ -168,12 +175,12 @@ public class Application {
 			System.out.println(list2.get(i));
 		}
 	}
-	public void titleUp() {          // 곡명 오름 차순  C,B,A = > A,B,C
-		Collections.sort(list3, new TitleSort());
-		for(int i = 0; i <list3.size(); i++) {
-			System.out.println(list3.get(i));
-		}
+//	public void titleUp() {          // 곡명 오름 차순  C,B,A = > A,B,C
+//		Collections.sort(list3, new TitleSort());
+//		for(int i = 0; i <list3.size(); i++) {
+//			System.out.println(list3.get(i));
+//		}
 		
-	}
+//	}
 
 }
