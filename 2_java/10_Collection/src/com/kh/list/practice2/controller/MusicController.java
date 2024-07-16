@@ -12,15 +12,51 @@ public class MusicController {
 	ArrayList<Music> list2 = new ArrayList<Music>();
 	ArrayList<Music> list3 = new ArrayList<Music>();
 
-	public void titleUp() {          // 곡명 오름 차순  C,B,A = > A,B,C
-		Collections.sort(list3, new TitleSort());
-		for(int i = 0; i <list3.size(); i++) {
-			System.out.println(list3.get(i));
+	
+	public boolean addLast(Music music) {
 		
+		
+		if(!music.getName().equals("") && !music.getTitle().equals("")) {
+			list.add(music);
+			return true;
+		}else {
+			return false;
+			
 		}
-	
+		     
+		
+		
 	}
+       public boolean addFirst(Music music) {
+		
+		
+		if(!music.getName().equals("") && !music.getTitle().equals("")) {
+			list.add(0,music);
+			return true;
+		}else {
+			return false;
+			
+		}
+		     
+		
+		
+	}
+       public void allMusic() {
+    	   for(int i=0; i<list.size(); i++) {
+    		   System.out.println(list.get(i));
+    	   }
+       }
 	
+       public Music searchMusic(String title) {
+    	  for(int i=0; i<list.size(); i++) {
+    		  if(list.get(i).getTitle().contains(title) ) {
+    			return list.get(i);
+    		  }
+    	  }
+    		  return null;
+       
 	
 
+
+       }
 }

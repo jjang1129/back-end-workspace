@@ -62,7 +62,7 @@ public class Application {
 			  break;
 			  case 7 : nameDown();
 			  break;
-			  case 8 : mc.titleUp();
+			  case 8 : titleUp();
 			  break;
 			  case 9 : check =false;
 			  System.out.println("프로그램을 종료합니다");
@@ -88,11 +88,13 @@ public class Application {
 		String title = sc.nextLine();
 		System.out.print("가수명 : ");
 		String name = sc.nextLine();
-		 list.add(0,new Music(title,name));
-		 list2.add(0,new Music(title,name));
-		 list3.add(0,new Music(title,name));
-		
-		 System.out.println("추가 성공 !");
+	
+		boolean check =mc.addFirst(new Music(title,name));
+		if(check) {
+			System.out.println("추가 성공");
+		}else {
+			System.out.println("추가 실패");
+		}
 	}
 	
 	
@@ -102,22 +104,26 @@ public class Application {
 		String title = sc.nextLine();
 		System.out.print("가수명 : ");
 		String name = sc.nextLine();
-		 list.add(list.size(),new Music(title,name));
-		 list2.add(list2.size(),new Music(title,name));
-		 list3.add(list3.size(),new Music(title,name));
-		 System.out.println("추가 성공 !");
+	boolean check =	 mc.addLast(new Music(title,name));
+	
+	if(check) {
+		System.out.println("추가성공");
+	}else {
+		System.out.println("추가실패");
+	}
+		
 		
 	}
 	public void searchMusic() {
 		System.out.println("****특정 곡 검색****");
 		System.out.print("검색할 곡 명 : ");
 	String title = sc.nextLine();
-		
-		for(int i =0; i<list.size(); i++) {
-			if(list.get(i).getTitle().contains(title)) {
-				System.out.println(list.get(i)+"을 검색 했습니다.");
-			}
-		} 
+	 
+	  
+	  if ( mc.searchMusic(title) != null) {
+		  System.out.println(mc.searchMusic(title)+"을 검색했습니다");
+	  } else 
+		  System.out.println("검색한곡을 찾지 못했습니다");
 		
 		
 	}
@@ -161,10 +167,7 @@ public class Application {
 		
 	}
 	public void allMusic () {
-		System.out.println("*****전체 곡 목록 출력 ******");
-		for(int i =0; i<list.size(); i++) {
-			System.out.println(list.get(i));
-		}
+		mc.allMusic();
 		
 	}
 	
@@ -175,12 +178,12 @@ public class Application {
 			System.out.println(list2.get(i));
 		}
 	}
-//	public void titleUp() {          // 곡명 오름 차순  C,B,A = > A,B,C
-//		Collections.sort(list3, new TitleSort());
-//		for(int i = 0; i <list3.size(); i++) {
-//			System.out.println(list3.get(i));
-//		}
+     public void titleUp() {          // 곡명 오름 차순  C,B,A = > A,B,C
+		Collections.sort(list3, new TitleSort());
+		for(int i = 0; i <list3.size(); i++) {
+			System.out.println(list3.get(i));
+		}
 		
-//	}
+	}
 
 }

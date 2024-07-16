@@ -17,7 +17,7 @@ public class InputThreadTest {
 
 	public static void main(String[] args) {
 		
-		
+		 
 		InputThreadTest  process = new InputThreadTest ();
 		
 		
