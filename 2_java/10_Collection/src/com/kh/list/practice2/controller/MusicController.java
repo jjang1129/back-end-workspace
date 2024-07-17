@@ -54,9 +54,18 @@ public class MusicController {
     		  }
     	  }
     		  return null;
-       
-	
-
-
        }
+	   
+       public Music deleteMusic(String title) {
+    	   for(int i=0; i<list.size(); i++) {
+    		   if(list.get(i).getTitle().equals(title)) {
+    			   list.get(i);
+    			 return   list.remove(i);
+    		   }
+    	   }
+    	   return null;
+       }
+
+
+       
 }

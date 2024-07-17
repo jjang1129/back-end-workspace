@@ -199,6 +199,8 @@ WHERE emp_name IN (SELECT emp_name
 DELETE FROM emp_salary 
 WHERE dept_code = 'D5';
 
+SELECT *
+FROM employee;
  /*
     TRUNCATE 
     - 테이블 전체 행을 삭제할 때 사용하는 구문

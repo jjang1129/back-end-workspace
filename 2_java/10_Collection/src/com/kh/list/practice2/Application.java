@@ -131,14 +131,10 @@ public class Application {
 	public void deleteMusic() {
 		System.out.print("삭제할 곡 명 : ");
 		String title = sc.nextLine();
-		for(int i =0; i<list.size(); i++) {
-			if(list.get(i).getTitle().equals(title)) {
-				System.out.println(list.get(i)+"을 삭제 했습니다");
-						list.remove(i);
-			}else {
-				System.out.println("삭제할 곡이 없습니다");
-			}
-		} 
+		
+		if(mc.deleteMusic(title) != null) {
+			System.out.println(mc.deleteMusic(title)+"을 삭제하였습니다");
+		}else System.out.println("삭제할곡이 없습니다");
 		
 		
 		
