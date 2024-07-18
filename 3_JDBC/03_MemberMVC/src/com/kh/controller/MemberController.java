@@ -12,10 +12,13 @@ import config.Serverinfo;
 
 public class MemberController {
 	
+	
+	
 
 		
 	public boolean signUp(String id, String name, String password) {
 
+		 boolean check=false;
 		// 회원가입 기능 구현! 
 		// -> 아이디가 기존에 있는지 체크 여부!
 		// -> member 테이블에 데이터 추가! 
@@ -32,23 +35,24 @@ public class MemberController {
 			
 			
 			if(ps.executeUpdate() == 1) {
+			
+				check=true;
 				ps.close();
 				conn.close();
 				
-				return true;
-			}else {
-				ps.close();
-				conn.close();
 				
-				return false;
 			}
+				
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			
 			System.out.println();
 		}
 		
 		
-		return false;
+		
+		
+		return check;
 		
 		
 		
@@ -60,6 +64,8 @@ public class MemberController {
 
 		// 로그인 기능 구현! 
 		// -> member 테이블에서 id와 password로 멤버 정보 하나 가져오기!
+		String name=null;
+		
 		try {
 			Class.forName(Serverinfo.DRIVER_NAME);
 			Connection conn = DriverManager.getConnection(Serverinfo.URL,Serverinfo.USER,Serverinfo.PASSWORD);
@@ -74,21 +80,19 @@ public class MemberController {
 					
 					if(rs.next()) {
 						
-						String name = rs.getString("name");
+						name = rs.getString("name");
 						ps.close();
 						rs.close();
-						return name;
-					} else
-						ps.close();
-					  rs.close();
-						return null;
-			  
+						
+					}	
+					
 					
 					
 				} catch (ClassNotFoundException | SQLException e) {
 					
 					e.printStackTrace();
-				} return null;
+				}
+		return name;
 				
 				
 		
@@ -154,8 +158,7 @@ public class MemberController {
 					PreparedStatement ps = conn.prepareStatement(query);
 					
 				
-					
-					
+										
 						ps.setString(1, name1);
 						ps.setString(2, id);						
 						ps.executeUpdate();

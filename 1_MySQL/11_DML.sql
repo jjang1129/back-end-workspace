@@ -147,7 +147,7 @@ UPDATE emp_salary
 SET salary= salary*1.1;
 
 UPDATE emp_salary
-SET salary= salary*1.2
+SET salary= salary*1.2	
 WHERE salary > 500000;
 
 -- 사번이 201인 사원의 사원번호를 NULL로 변경 
