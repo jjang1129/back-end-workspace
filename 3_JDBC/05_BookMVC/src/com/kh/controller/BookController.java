@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
+
 import config.Serverinfo;
 
 public class BookController {
@@ -17,12 +19,13 @@ public class BookController {
 	
 	
 	// 1. 전체 책 조회
+	
 		public void printBookAll() {
 			
 			try {
 				Class.forName(Serverinfo.DRIVER_NAME);
 				Connection conn= DriverManager.getConnection(Serverinfo.URL,Serverinfo.USER,Serverinfo.PASSWORD);
-				String query="SELECT * FROM book";
+				String query="SELECT * FROM book LEFT JOIN publisher ON (bk_pub_no = pub_no)";
 				PreparedStatement ps = conn.prepareStatement(query);
 				
 				ResultSet rs =ps.executeQuery();
@@ -33,13 +36,18 @@ public class BookController {
 				String author =rs.getString("bk_author");
 				int price = rs.getInt("bk_price");
 				int pubNo = rs.getInt("bk_pub_no");
+				String pubName = rs.getString("pub_name");
+				String phone= rs.getString("phone");
+				
 				
 					
-				System.out.println("도서번호 : "+bkNo+". " +"제목: "+ title +" / 저자: "+ author + " / 가격: "+ price +" / 출판사번호: "+ pubNo);	
+				System.out.println("도서번호 : "+bkNo+". " +"제목: "+ title +" / 저자: "+ author + " / 가격: "+ price +" / 출판사번호: "+ pubNo +" / 출판사이름 : "+pubName+" / 전화번호 : " +phone);	
 					
 				}
 				
-				
+				conn.close();
+				ps.close();
+				rs.close();
 				
 				
 			} catch (ClassNotFoundException | SQLException e) {
@@ -65,7 +73,12 @@ public class BookController {
 				//있으면 false (불가) 
 				if(rs.next()) {
 					check=false;
+					conn.close();
+					ps.close();
+					rs.close();				
 					return check;
+					
+					
 				}
 				
 						
@@ -93,6 +106,11 @@ public class BookController {
 				ps.setString(2, author);
 				ps.executeUpdate();
 				System.out.println("성공적으로 책을 등록했습니다.");
+				
+				conn.close();
+				ps.close();
+			
+				
 			}else {
 				System.out.println("책을 등록하는데 실패했습니다.");
 				
@@ -117,14 +135,33 @@ public class BookController {
 				Class.forName(Serverinfo.DRIVER_NAME);
 				Connection conn= DriverManager.getConnection(Serverinfo.URL,Serverinfo.USER,Serverinfo.PASSWORD);
 				String query="DELETE FROM book WHERE bk_no=?";
+				String query2="SELECT * FROM rent WHERE rent_book_no=?";
 				PreparedStatement ps = conn.prepareStatement(query);
+				PreparedStatement ps2 = conn.prepareStatement(query2);
 				ps.setInt(1, bkNo);
-				ps.executeUpdate();
-				if(ps.executeUpdate()==1) {
-					System.out.println("책을 삭제하는데 실패했습니다");
-				} else {
-					System.out.println("책을 삭제하는데 성공했습니다");
-				}
+				ps2.setInt(1,bkNo);
+				
+			//	ps.executeUpdate();
+//				System.out.println(ps.executeUpdate());
+				ResultSet rs = ps2.executeQuery();
+				if(rs.next()) {
+					System.out.println("누군가 대여중인 책입니다");
+				
+					
+					
+				}else {
+					if(ps.executeUpdate()==1) {
+						System.out.println("책을 삭제하는데 성공했습니다");
+					} else {
+						System.out.println("없는 책 번호 입니다");
+					}
+					
+				}conn.close();
+				ps.close();
+				rs.close();
+				
+			
+				
 			} catch (ClassNotFoundException | SQLException e) {
 				
 				e.printStackTrace();

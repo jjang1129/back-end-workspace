@@ -28,6 +28,11 @@ public class MemberController {
 					ps.setString(3, memberName);
 					ps.executeUpdate();
 					
+					conn.close();
+					ps.close();
+				
+					
+					
 					return true;
 					
 				
@@ -55,8 +60,15 @@ public class MemberController {
 					ResultSet rs = ps.executeQuery();
 					
 					if(rs.next()) {
-						return rs.getString("member_name");
+						String name = rs.getString("member_name");
+						conn.close();
+						ps.close();
+						rs.close();						
+						return name;
 					}else {
+						conn.close();
+						ps.close();
+						rs.close();	
 					  return null;
 					}
 				} catch (SQLException | ClassNotFoundException e) {
@@ -68,5 +80,6 @@ public class MemberController {
 				// 로그인에 성공하면 "~~님, 환영합니다!" 출력 후 memberMenu() 호출
 				// 로그인에 성공하면 "~~님, 환영합니다!" 출력 후
 			}
+	
 
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Publisher {
-   private int pub_No;
+   private int pubNo;
    private String pubName;
    private int phone;
 }
