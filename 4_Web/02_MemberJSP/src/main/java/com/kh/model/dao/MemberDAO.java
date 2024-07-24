@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import com.kh.controller.RegisterServlet;
 import com.kh.model.vo.Member;
 
+import config.Serverinfo;
+
 
 
 public class MemberDAO {
@@ -130,6 +132,7 @@ public Member searchMember(String id) {
 		  Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/member","root","qwer1234");
 		  String query ="SELECT * FROM member WHERE id=?";
 		  PreparedStatement ps = conn.prepareStatement(query);
+		  
 		
 		  ps.setString(1, id);
 		
