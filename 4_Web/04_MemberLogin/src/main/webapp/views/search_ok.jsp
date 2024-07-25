@@ -9,9 +9,9 @@
 </head>
 <body>
  <% Member member = (Member)request.getAttribute("member"); %>
-     
-       <h1>아이디 : <%=member.getId() %> </h1>
-         <h1>비밀번호 : <%=member.getPassword() %> </h1>
-           <h1>이름 : <%=member.getName() %> </h1>
+     <h1>회원 검색 결과</h1>
+       <h2>아이디 : <%=member.getId() %> </h2>
+         <h2>비밀번호 : <%=member.getPassword() %> </h2>
+           <h2>이름 : <%=member.getName() %> </h2>
 </body>
 </html>

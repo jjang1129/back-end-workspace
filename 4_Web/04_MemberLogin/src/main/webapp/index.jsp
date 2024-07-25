@@ -38,6 +38,8 @@
          
                  
                  <!-- 로그인 된 경우  -->
+                <h1><%=mem.getName() %>님, 환영합니다!</h1>
+                 
                  <li><a href="/views/search.jsp">회원검색</a></li>
                  <!-- 회원검색 : 검색할 아이디 입력받아서 
                             호출 : /search, 방식 : get 
@@ -49,6 +51,9 @@
                  <li><a href="/allMember">전체회원보기</a></li>
                  
                   <!-- 전체회원보기 : views/allMember.jsp에 리스트 출력  -->
+                  
+                  <li><a href="/deleteMember">회원 탈퇴하기</a> </li>
+                  <!-- 회원탈퇴 : 로그아웃하고 Member table에서 삭제하고 deleteMember.jsp로  -->
                                  
                  <li><a href="/logout">로그아웃</a></li>
                  

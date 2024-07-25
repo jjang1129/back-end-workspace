@@ -151,6 +151,30 @@ public MemberDAO(){
 		return list;
 	}
 	
+	public boolean deleteMember(String id) throws SQLException {
+		
+		Connection conn = connect();
+		
+		String query = "DELETE FROM member WHERE id = ? ";
+		
+		PreparedStatement ps = conn.prepareStatement(query);
+		
+		ps.setString(1,id);
+		
+		
+		
+		if(ps.executeUpdate() ==1) {
+			close(ps, conn);
+			return true;
+		}else {
+			close(ps, conn);
+			return false;
+		}
+		
+		
+		
+	} 
+	
 	
 	
 	

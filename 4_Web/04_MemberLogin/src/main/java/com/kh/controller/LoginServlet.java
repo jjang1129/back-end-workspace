@@ -2,6 +2,7 @@ package com.kh.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,12 +19,15 @@ import com.kh.model.vo.Member;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	int count = 0;
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberDAO member = new MemberDAO();
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+	
+		
 		
 		try {
 			 if(member.login(id, password)) {
@@ -35,13 +39,29 @@ public class LoginServlet extends HttpServlet {
 				Member mem = new Member(id,password,member.memberName(id, password));
 				
 				HttpSession session = request.getSession();
+			
 				
 				// 2) 세션에 바인딩 하기 
+				
 				
 				session.setAttribute("info", mem);
 				
 				
 				response.sendRedirect("index.jsp");
+			
+				
+			 } else {
+				 
+					
+				count++;
+				
+				
+				request.setAttribute("count", count);
+				request.getRequestDispatcher("/views/loginFalse.jsp").forward(request, response);
+				 //response.sendRedirect("/views/loginFalse.jsp");
+				 
+				 
+				 
 			 }
 			
 		} catch (SQLException e) {

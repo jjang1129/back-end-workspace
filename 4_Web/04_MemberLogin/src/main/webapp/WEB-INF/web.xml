@@ -59,4 +59,24 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteMember</display-name>
+    <servlet-name>DeleteMember</servlet-name>
+    <servlet-class>com.kh.controller.DeleteMember</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteMember</servlet-name>
+    <url-pattern>/DeleteMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Count</display-name>
+    <servlet-name>Count</servlet-name>
+    <servlet-class>com.kh.controller.Count</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Count</servlet-name>
+    <url-pattern>/Count</url-pattern>
+  </servlet-mapping>
 </web-app>
