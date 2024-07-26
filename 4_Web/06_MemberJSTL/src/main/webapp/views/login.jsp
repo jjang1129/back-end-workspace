@@ -19,10 +19,5 @@
           <input type="submit" value="로그인">
          </form>
              
-             <!-- loginFalse.jsp 
-             servlet -> login.jsp
-             document.cookie -> ck=ck <--- 
-             
-              -->
 </body>
 </html>

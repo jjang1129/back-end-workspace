@@ -7,16 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-  <jsp:include page="header.jsp"/>
-   <form action="choose5_view.jsp">
-   
-     숫자 : <input type="text" name="number"> <br>
-      <input type="submit" value="전송">
-   
-   
-   </form>
-
+<h1>중복된 아이디 입니다</h1>
+ <a href="/index.jsp">돌아가기</a>
 </body>
 </html>

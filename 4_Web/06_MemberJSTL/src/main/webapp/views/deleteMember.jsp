@@ -8,15 +8,9 @@
 </head>
 <body>
 
-
-  <jsp:include page="header.jsp"/>
-   <form action="choose5_view.jsp">
-   
-     숫자 : <input type="text" name="number"> <br>
-      <input type="submit" value="전송">
-   
-   
-   </form>
+ <h1>회원탈퇴가 완료 되었습니다</h1>
+ 
+ <a href="/index.jsp"> 메인으로 돌아가기</a>
 
 </body>
 </html>

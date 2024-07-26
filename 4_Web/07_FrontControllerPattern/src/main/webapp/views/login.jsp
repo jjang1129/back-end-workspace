@@ -13,16 +13,24 @@
                   -->
          <h1>로그인 </h1>
          
-         <form action="/login" method="post">
+        
+  	<form action="front" method="post">
+  	<input type="hidden" name="command" value="login">
           아이디 : <input type="text" name="id"> <br>
-          비밀번호 : <input type="password" name="password"> <br>
-          <input type="submit" value="로그인">
+          비밀번호 : <input type="password" name="password"  > <br>
+          <input type="submit" value="로그인" ${ ck.value.equals("ck") ? 'disabled' : '' }>
+          <p style="color: red">아이디 또는 비밀번호가 틀렸습니다</p>
+          <p>              ${count}회 실패        ${ck.value.equals("ck")}       </p>
+        
+  	
+       
+   
          </form>
+         
+        <script>
+        	console.log(document.cookie === 'ck=ck');
+        </script>
              
-             <!-- loginFalse.jsp 
-             servlet -> login.jsp
-             document.cookie -> ck=ck <--- 
              
-              -->
 </body>
 </html>
