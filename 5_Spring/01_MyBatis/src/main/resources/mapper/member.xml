@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MemberMapper">
+ <insert id="register" parameterType="com.kh.mybatis.model.vo.Member">
+   INSERT INTO member
+   VALUES (#{id},#{password},#{name})
+ </insert>
+ <select  id="search" parameterType="String" resultType="com.kh.mybatis.model.vo.Member"  >
+   SELECT * FROM member
+   WHERE id = #{id}
+ </select>
+ 
+</mapper> 
+
+   
+
+<!-- namespace : 매퍼 역할을 해줄 인터페이스의 (패키지명.인터페이스 파일명)
+에러날씨 윈도우 -> 프리프런스 xml 와일드 디벨롭 위에꺼 체크   -->
+
+

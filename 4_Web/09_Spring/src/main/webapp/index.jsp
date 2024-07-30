@@ -24,7 +24,7 @@
                            RegisterServlet
                            index.jsp
                 -->
-               <li><a href="/views/login.jsp">로그인</a></li>
+               <li><a href="/login">로그인</a></li>
                <!-- 로그인 : 아이디, 비밀번호 입력 받아서 
                         호출 : /login, 방식 : post 
                         LoginServlet : 세션 데이터 바인딩! 
@@ -39,7 +39,7 @@
         	          <!-- 로그인 된 경우  -->
                 <h1>${info.name}님, 환영합니다!!!!</h1>
                  
-                 <li><a href="/views/search.jsp">회원검색</a></li>
+                 <li><a href="/search">회원검색</a></li>
                  <!-- 회원검색 : 검색할 아이디 입력받아서 
                             호출 : /search, 방식 : get 
                             SearchServlet
@@ -47,14 +47,14 @@
                             실패하면 views/search_false.jsp "검색 실패했습니다" 출력 
                             
                   -->
-                 <li><a href="/allMember.do"  >전체회원보기</a></li>
+                 <li><a href="/allMember"  >전체회원보기</a></li>
                  
                   <!-- 전체회원보기 : views/allMember.jsp에 리스트 출력  -->
                   
-                  <li><a href="/deleteMember.do">회원 탈퇴하기</a> </li>
+                  <li><a href="/deleteMember">회원 탈퇴하기</a> </li>
                   <!-- 회원탈퇴 : 로그아웃하고 Member table에서 삭제하고 deleteMember.jsp로  -->
                                  
-                 <li><a href="/logout.do">로그아웃</a></li>
+                 <li><a href="/logout">로그아웃</a></li>
                  
                  <!-- 로그아웃 : 로그아웃하고 index.jsp로! -->
            </ul>
