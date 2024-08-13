@@ -10,5 +10,6 @@ import com.semi.youtube.model.vo.Video;
 public interface VideoMapper {
 	
 	List<Video> allVideo();
+	Video detail(int videoCode);
 
 }

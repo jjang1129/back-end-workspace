@@ -94,6 +94,14 @@
 		<artifactId>mysql-connector-j</artifactId>	
 		</dependency>
 		
+		<!--코드 수정시 서버 재시작?-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		
 		
 		
 		
