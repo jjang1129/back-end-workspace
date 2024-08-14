@@ -48,7 +48,7 @@
             <div class="video-desc">
             <h2>${video.videoTitle}</h2>
             <p>${video.channel.channelName}</p>
-             <p class="video-meta" data-video-date=${video.videoDate}>
+             <p class="video-meta" data-video-date= ${video.videoDate}>
                조회수 ${video.videoCount}회 ㆍ  <span class="video-date"></span>
                </p>
             </div>

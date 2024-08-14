@@ -1,4 +1,4 @@
-package com.kh.security.config;
+package com.semi.youtube.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,12 +26,11 @@ public class SecurityConfig {
 				.httpBasic(basic -> basic.disable())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize ->
-				 authorize		                                            // .requestMatchers("/register").authenticated()  => 레지스터에는 인증된 사람만 올수있어 
-				       .requestMatchers("/member").authenticated() // /member 요청에는 인증된 사람만 들어올수있다       
-				       .requestMatchers("/admin").hasRole("ADMIN") // 권한이 ROLE_ADMIN인 경우만 접근이 가능
-				         .anyRequest().permitAll()                    //   그외에는 authorize.anyRequest().permitAll()    전체 허용 열쇠없어도 ok 
+				 authorize		                                          
+				 	  // .requestMatchers("/like").authenticated()										     				 											// 권한이 ROLE_ADMIN인 경우만 접근이 가능
+				       .anyRequest().permitAll()                
 				  )	
-				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) //필터 사용
+			//	.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) //필터 사용
 				.build();
 	}
 }

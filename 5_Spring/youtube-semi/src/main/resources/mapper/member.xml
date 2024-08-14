@@ -9,5 +9,9 @@ SELECT *
 fROM member 
 WHERE id = #{id} AND password = #{password}
 </select>
+
+<insert id="signup" parameterType="Member">
+INSERT INTO member VALUES (#{id},#{password},#{email},#{phone})
+</insert>
 </mapper>
 

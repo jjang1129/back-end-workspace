@@ -33,12 +33,13 @@
               <button>구독중</button>
               </c:if>
               </div>
-              <c:if test="${like == null}">
+               <button id="like"><i class="fa-regular fa-thumbs-up">좋아요</i></button>
+             <%--  <c:if test="${like == null}">
               <button id="like"><i class="fa-regular fa-thumbs-up">좋아요</i></button>
               </c:if>
               <c:if test="${like != null}">
               <button id="unlike"><i class="fa-solid fa-thumbs-up">좋아요 취소</i></button>
-              </c:if>
+              </c:if> --%>
               </div>
               <div class="video-detail-info">
                ${video.videoDesc}
@@ -59,35 +60,8 @@
 			</c:forEach>
 		</div>
 	</main>
-	<script>
-	$("#like").click(()=>{
-		
-		$.ajax({
-			type: "post",
-			url: "/like",
-			data :{
-				code:${video.videoCode}
-			},
-			success:function(){
-				alert("좋아요!");
-				location.reload();
-			},
-			error:function(){
-				alert("로그인부터 하세요!")
-				 location.href = "/login";
-			
-			}
-		})
-		
-		
-	})
 	
-
-	
-	
-	</script>
-	
-	<c:if test="${not empty like}">
+	<%-- <c:if test="${not empty like}">
 	<script >
 	
 	$("#unlike").click(()=>{
@@ -111,15 +85,48 @@
 		
 		
 	})
+		
 	
+	</script>
+	</c:if> --%>
+<script src="${pageContext.request.contextPath}/js/time.js"></script>
+<script>
+	 const token = localStorage.getItem("token");
+	 console.log("로컬스토리지에서 가져온 토큰 : " + token);
+	 
+	$("#like").click(()=>{
+		
+		$.ajax({		
+			type: "post",
+			url: "/like",		
+			/* data :{
+				code:${video.videoCode},
+	                 token:token
+			},
+			 */
+	//		beforeSend:function(xhr){
+	//			console.log("전 : " +token);
+	//			xhr.setRequestHeader("Authorization",'Bearer ' +token)
+	//			console.log("후 : " +token);
+	//		},
+			success:function(){	
+				alert("좋아요!")
+				location.reload()		
+			},
+			error:function(){
+				alert("로그인부터 하세요!");
+				
+			
+			}
+		})
+		
+		
+	})
 	
-	
-	
-	
+
 	
 	
 	</script>
-	</c:if>
-<script src="${pageContext.request.contextPath}/js/time.js"></script>
+	
 </body>
 </html>

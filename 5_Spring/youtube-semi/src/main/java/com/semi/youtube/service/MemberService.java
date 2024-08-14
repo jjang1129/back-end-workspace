@@ -1,6 +1,7 @@
 package com.semi.youtube.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.semi.youtube.model.vo.Member;
@@ -13,6 +14,7 @@ public class MemberService {
 	@Autowired
 	private MemberMapper member;
 	
+	private BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
 	
 	public boolean check(String id) {  // 입력할때마다 id 값을 받아서 
 		Member vo = member.check(id); // mapper를 돌려서 select  
@@ -29,6 +31,10 @@ public class MemberService {
 		return member.login(vo);
 	}
 	
+	public void signup(Member vo) {
+		vo.setPassword(bcpe.encode(vo.getPassword()));
+		member.signup(vo);
+	}
 	
 
 }

@@ -13,8 +13,8 @@
 </head>
 <body>
 <div class="container">
-  <h1>로그인</h1>    <!--  제출전 한번 더 검증하기 위함  -->
-  <form action="/login" method="post" id="frm">
+  <h1>회원가입</h1>    <!--  제출전 한번 더 검증하기 위함  -->
+  <form action="/signup" method="post" onsubmit="return validate()">
   
   <div class="mb-3">
     <label for="id" class="form-label">아이디</label>
@@ -26,34 +26,24 @@
     <input type="password" class="form-control" id="password" name="password">
     <div id="pwdCheck" class="form-text"></div>
   </div>
+   <div class="mb-3">
+    <label for="email" class="form-label">이메일</label>
+    <input type="text" class="form-control" id="email" name="email" >
+    <div id="emailCheck" class="form-text"></div>
+  </div>
+   <div class="mb-3">
+    <label for="phone" class="form-label">전화번호</label>
+    <input type="text" class="form-control" id="phone" name="phone" >
+    <div id="phoneCheck" class="form-text"></div>
+  </div>
 
-  <button type="submit" class="btn btn-dark">로그인</button>
+  <button type="submit" class="btn btn-dark">회원가입</button>
 </form>
-  <a href="/signup">아직 회원이 아니신가요?</a>
 </div>
 
-<script >
- // 로그인 할때 
- 
-$("button").click((e)=>{
-	e.preventDefault()
-	$.ajax({
-		
-		url:"/login",
-		type:"post",
-		data :$("#frm").serialize(),
-		success:function(data){
-			console.log(data)
-			localStorage.setItem("token",data)
-			location.href="/";
-		}
-		
-	})
-})
-
-</script>
 
 
 
+<script src="${pageContext.request.contextPath}/js/signup.js"></script>
 </body>
 </html>

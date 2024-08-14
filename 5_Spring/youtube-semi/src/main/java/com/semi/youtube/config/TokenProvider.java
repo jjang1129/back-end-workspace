@@ -1,4 +1,4 @@
-package com.kh.security.config;
+package com.semi.youtube.config;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -9,7 +9,7 @@ import javax.crypto.SecretKey;
 
 import org.springframework.stereotype.Service;
 
-import com.kh.security.model.vo.Member;
+import com.semi.youtube.model.vo.Member;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -25,12 +25,11 @@ public class TokenProvider {
 	
 	public String create(Member member) {
 		
+		
 		return Jwts.builder()
 				.signWith(secretKey)  // 시크릿 키로 지정 
 				.setClaims(Map.of(
-				"id",member.getId(),
-				"name",member.getName(),
-				"role",member.getRole()
+				"id",member.getId()			
 				))
 				.setIssuedAt(new Date()) // 토큰 생성 날짜
 				.setExpiration(Date.from(Instant.now().plus(1,ChronoUnit.DAYS))) // 토큰의 유효기간 지정 현재날짜에서 1일
@@ -50,9 +49,7 @@ public class TokenProvider {
 	 
 	  return Member
 			  .builder()
-			  .id((String)claims.get("id"))
-			  .name((String)claims.get("name"))
-			  .role((String)claims.get("role"))
+			  .id((String)claims.get("id"))		 
 			  .build();
 	
 	}

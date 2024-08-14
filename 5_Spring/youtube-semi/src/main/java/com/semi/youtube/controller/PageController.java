@@ -68,5 +68,10 @@ public class PageController {
 		return "login";
 	}
 	
+	@GetMapping("/signup")
+	public String signup() {
+		
+		return "signup";
+	}
 	
 }
