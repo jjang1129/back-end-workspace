@@ -15,10 +15,7 @@ videoMeta.forEach(meta => {
   
   // html로 p태그의 변환한 데이터들을 span에 입력 
  
- if(videoDate.innerHTML.substring("0","1") / 7 <= 1){
-	
-	videoDate.innerHTML= videoDate.innerHTML.substring("0","1") / 7 + "주일전"
- }
+
 });
 
 
@@ -36,7 +33,7 @@ function getTime(date){
 		return rtf.format(-Math.floor(diff/60),'minutes');
 	}else if (diff < 86400){
 		return rtf.format(-Math.floor(diff/3600),'hours');		
-	} else if ( diff >= 604800){
+	} else if ( diff <= 604800){
 		return rtf.format(-Math.floor(diff/86400),'days');
 	} 
 	

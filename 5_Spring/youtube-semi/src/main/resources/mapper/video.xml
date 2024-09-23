@@ -15,9 +15,10 @@
 </association>              
 </resultMap>
 
-<select id="allVideo" resultMap="videoMap"> <!-- resultMap 사용시 resultType이 아닌 resultMap에 id값 -->
+<select id="allVideo" parameterType="Paging" resultMap="videoMap"> <!-- resultMap 사용시 resultType이 아닌 resultMap에 id값 -->
 SELECT * FROM video
-JOIN channel USING (channel_code);
+JOIN channel USING (channel_code)
+LIMIT #{offset}, #{limit}
 </select>
 
 <select id="detail" parameterType="Integer" resultMap="videoMap">

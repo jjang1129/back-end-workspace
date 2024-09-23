@@ -1,12 +1,17 @@
 package com.semi.youtube.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.semi.youtube.model.vo.Member;
+import com.semi.youtube.model.vo.Paging;
 import com.semi.youtube.model.vo.Subscribe;
 import com.semi.youtube.model.vo.Video;
 import com.semi.youtube.model.vo.VideoLike;
@@ -16,6 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -25,26 +31,37 @@ public class PageController {
 	@Autowired
 	private VideoService video;
 	
+
+	
 	@GetMapping("/")
-	public String index(Model model) {
-		System.out.println(video.allVideo());
-		model.addAttribute("list", video.allVideo());
+	public String index(Model model, Paging paging ) {
+		
+		
+	
+		
+		model.addAttribute("list", video.allVideo(paging));
 		return "index";
+		
+		
+		
 	}
 	// 비디오 1개 보여주기 
 	// 좋아요 관련 정보 가져오기 
 	// 구독자수, 구독 관련 정보 가져오기 
 	@GetMapping("/{videoCode}")
-	public String detail(@PathVariable("videoCode") int videoCode, Model model,HttpServletRequest request) {
+	public String detail(@PathVariable("videoCode") int videoCode, Model model, Paging paging) {
 		Video data = video.detail(videoCode);
 		
 		model.addAttribute("video", data);
 		
-		model.addAttribute("list", video.allVideo());
+		model.addAttribute("list", video.allVideo(paging));
 		
 		model.addAttribute("count", video.count(data.getChannel().getChannelCode()));
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("vo");
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		Member member = (Member) authentication.getPrincipal();
+		
 		Subscribe sub = null;
 		VideoLike like = null;
 		if(member != null ) {
@@ -72,6 +89,11 @@ public class PageController {
 	public String signup() {
 		
 		return "signup";
+	}
+	@ResponseBody
+	@GetMapping("/list")
+	public List<Video> list(Paging paging){
+		return video.allVideo(paging);
 	}
 	
 }

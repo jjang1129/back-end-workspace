@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.semi.youtube.config.TokenProvider;
+
 import com.semi.youtube.model.vo.Member;
 import com.semi.youtube.service.MemberService;
 
@@ -22,9 +22,8 @@ public class MemberController {
 	@Autowired
 	private MemberService member;	
 	
-	@Autowired
-	private TokenProvider tokenProvider; 
-	// 토큰 생성기 가져옴 
+
+	
 	
 	//중복체크 
 	@ResponseBody
@@ -44,30 +43,7 @@ public class MemberController {
 	}
 	
 	
-	// 로그인 
-	@ResponseBody
-	@PostMapping("/login")
-	public String login(Member vo, HttpServletRequest request) {
-		Member result= member.login(vo);
-		if(result != null ) {
-		//	HttpSession session = request.getSession();
-		//	session.setAttribute("vo", result);
-			String token=tokenProvider.create(result);
-			System.out.println("토큰 :"+ token);
-			return token;
-		}
-		return null;
-	}
 	
-	
-	// 로그아웃 
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "redirect:/";
-		
-	}
 	
 	
 

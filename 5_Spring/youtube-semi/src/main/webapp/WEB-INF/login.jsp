@@ -18,7 +18,7 @@
   
   <div class="mb-3">
     <label for="id" class="form-label">아이디</label>
-    <input type="text" class="form-control" id="id" name="id" >
+    <input type="text" class="form-control" id="id" name="username" >
     <div id="idCheck" class="form-text"></div>
   </div>
   <div class="mb-3">
@@ -32,26 +32,7 @@
   <a href="/signup">아직 회원이 아니신가요?</a>
 </div>
 
-<script >
- // 로그인 할때 
- 
-$("button").click((e)=>{
-	e.preventDefault()
-	$.ajax({
-		
-		url:"/login",
-		type:"post",
-		data :$("#frm").serialize(),
-		success:function(data){
-			console.log(data)
-			localStorage.setItem("token",data)
-			location.href="/";
-		}
-		
-	})
-})
 
-</script>
 
 
 
