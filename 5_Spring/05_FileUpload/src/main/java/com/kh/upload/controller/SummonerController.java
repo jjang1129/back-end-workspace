@@ -13,7 +13,10 @@ import org.springframework.web.client.RestTemplate;
 import com.kh.upload.model.vo.AccountDto;
 import com.kh.upload.model.vo.Board;
 import com.kh.upload.model.vo.InfoDto;
+import com.kh.upload.model.vo.MatchDto;
+import com.kh.upload.model.vo.MatchResultDto;
 import com.kh.upload.model.vo.Paging;
+import com.kh.upload.model.vo.MatchResultDto;
 
 @Controller
 public class SummonerController {
@@ -33,18 +36,81 @@ public class SummonerController {
         	List<String> matchCode = (List<String>) restTemplate.getForObject("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=20&api_key=" + API_KEY, List.class); 
         	System.out.println("나옴? " + matchCode);
         	
-//            String puu = response.getContent();
-//           String url2 =  "/lol/summoner/v4/summoners/by-puuid/"+ puu ;
-//           ArrayList<Paging> code = restTemplate.getForObject(url2, ArrayList.class);
-           //https://asia.api.riotgames.com/lol/match/v5/matches/KR_7293407940?api_key=RGAPI-3be5323b-6b61-4aed-96c8-887c28dff082
-        	InfoDto dto = restTemplate.getForObject("https://asia.api.riotgames.com/lol/match/v5/matches/"+ matchCode.get(0) + "?api_key=" + API_KEY, InfoDto.class);
+
+          List<MatchDto> matchList = new ArrayList<MatchDto>();
+        	for(int i=0; i<matchCode.size(); i++) {
+        		matchList.add(restTemplate.getForObject("https://asia.api.riotgames.com/lol/match/v5/matches/"+ matchCode.get(i) + "?api_key=" + API_KEY, MatchDto.class));
+        	}
+        
+        	MatchDto matchDto = restTemplate.getForObject("https://asia.api.riotgames.com/lol/match/v5/matches/"+ matchCode.get(0) + "?api_key=" + API_KEY, MatchDto.class);
+        	
+        	System.out.println("첫번째 경기 matchDto" + matchDto);
+        	model.addAttribute("firstGame", matchDto);
+        	
+        	int[] myteam = new int[matchList.size()];
+  for(int i=0; i<matchList.size(); i ++) {
+	  for(int j=0; j<matchList.get(i).getInfo().getParticipants().size(); j++) {
+		 
+	  if(matchList.get(i).getInfo().getParticipants().get(j).getRiotIdGameName().trim().toLowerCase().equals(gameName)) {
+		  
+		 int k = (matchList.get(i).getInfo().getParticipants().get(j).getTeamId());
+		 myteam[i] = k;
+		  break;
+	  }
+	  
+  }
+  }   
+
+ 
+          
+            
+	List<MatchResultDto> resultList = new ArrayList<MatchResultDto>();
+	
+			for (int i = 0; i < myteam.length; i++) {
+				for (int j = 0; j < 2; j++) {
+				
+					if (myteam[i] == matchList.get(i).getInfo().getTeams().get(j).getTeamId()) {
+						System.out.println(myteam[i] +"/" +  matchList.get(i).getInfo().getTeams().get(j).isWin());
+						resultList.add(new MatchResultDto()
+								.builder()
+								.riotIdGameName(gameName)
+								.teamId(myteam[i])
+								.win(matchList.get(i).getInfo().getTeams().get(j).isWin())
+								.build());
+						
+					}
+				}
+				
+			}
+ 
+			model.addAttribute("result", resultList);
+			System.out.println(resultList.size());
+			System.out.println(resultList);
+			for(int i=0; i<resultList.size(); i++) {
+				System.out.println(resultList.get(i));
+			}
+			
+
+        	// 매치코드가 20개인데 // 1번 매치코드를 타고 들어가서 // paticipant를 가서 애네를 최대10번 돌아서 검색한 닉네임과 일치여부를 확인하고 그 시점의 team id ex )  100
+        	
+        	
+        	
 //        	InfoDto dto2 = restTemplate.getForObject("https://asia.api.riotgames.com/lol/match/v5/matches/KR_7277245614?api_key=RGAPI-d41ece30-605a-4b72-b671-861bb5343f75" , InfoDto.class);
-        	System.out.println(matchCode.get(0));
-        	System.out.println("DTO2 : " + dto);
+        	
+        
+          
+         List<String> wins = new ArrayList<String>();
+         
+        
+          
             model.addAttribute("summoner", response);
             model.addAttribute("codeList", matchCode); 
-            System.out.println(dto.getTeams());
-            model.addAttribute("test", dto.getEndOfGameResult()); 
+            model.addAttribute("match",matchList);
+            
+            
+          
+            
+   
         } catch (Exception e) {
             model.addAttribute("error", "소환사를 찾을 수 없습니다.");
         }
